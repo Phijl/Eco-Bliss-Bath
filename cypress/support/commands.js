@@ -24,3 +24,20 @@ Cypress.Commands.add("getAuthToken", () => {
     return response.body.token; // Retourne le token de la réponse
   });
 });
+
+Cypress.Commands.add("getAuthToken2", () => {
+  cy.request({
+    method: "POST",
+    url: `${Cypress.env("apiUrl")}/login`,
+    body: {
+      username: "testuser_1733419609524@example.com",
+      password: "Password123!",
+    },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => {
+    expect(response.status).to.eq(200); // Vérifie que la requête est réussie
+    return response.body.token; // Retourne le token de la réponse
+  });
+});
