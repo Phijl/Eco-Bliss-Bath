@@ -7,3 +7,5 @@ SWAGER: http://localhost:8081/api/doc
 
 Pour lancer Cypress
 Taper la commande npx cypress open
+Cliquez sur "E2E testing"
+Selectionner "Chrome"
