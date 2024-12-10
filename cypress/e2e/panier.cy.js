@@ -191,4 +191,19 @@ describe("Panier", () => {
       });
     });
   });
+  it.only("Failles XSS", () => {
+    cy.Login();
+    cy.wait(2000);
+    cy.get('[data-cy="nav-link-products"]').click();
+    cy.get(':nth-child(3) > .add-to-cart > [data-cy="product-link"]').click();
+
+    cy.get('[data-cy="detail-product-quantity"]')
+      .clear()
+      .type('<script>alert("XSS Test")</script>');
+    cy.get('[data-cy="detail-product-add"]').click();
+    cy.get('[data-cy="detail-product-quantity"]').should(
+      "not.contain",
+      '<script>alert("XSS Test")</script>'
+    );
+  });
 });
